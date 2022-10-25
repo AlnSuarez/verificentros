@@ -1,0 +1,49 @@
+/* .MuiMenu-paper {
+    transition-duration: 0s !important;
+} */
+
+.menusNavBar {
+    display: flex;
+    flex-direction: row;
+}
+
+.hamburguerMenu {
+    display: none;
+}
+
+.sideBar {
+    display: none;
+}
+
+.accountIcon {
+    margin-right: 10px;
+}
+
+@media (max-width: 900px) {
+    .menusNavBar {
+        display: none;
+    }
+    .hamburguerMenu {
+        display: block;
+    }
+
+    .sideBar {
+        position: absolute;
+        right: 10px;
+        display: flex;
+        margin-top: 200px;
+        width: 300px;
+        height: fit-content;
+        background-color: #0e5caa;
+        border-radius: 10px;
+        padding: 10px;
+    }
+
+    .sideBarBackdground{
+        width: 300%;
+        height: 200vh;
+        background-color: black;
+        opacity: 50%;
+        position: absolute;
+        transform: translateX(-5em);    }
+}
