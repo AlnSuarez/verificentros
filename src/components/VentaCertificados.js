@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
@@ -19,6 +19,17 @@ const style = {
     left: "50%",
     transform: "translate(-50%, -50%)",
     width: "50%",
+    bgcolor: "background.paper",
+    boxShadow: 24,
+    p: 4,
+};
+
+const style900 = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: "100%",
     bgcolor: "background.paper",
     boxShadow: 24,
     p: 4,
@@ -61,6 +72,20 @@ function VentaCertificados() {
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
+
+    const [windowWidth, detectWd] = React.useState(false);
+
+    function saveSize(){
+        detectWd(window.innerWidth);
+    }
+
+    useEffect(()=>{
+        window.addEventListener('resize', saveSize);
+        return () => {
+        window.removeEventListener('resize', saveSize);
+        }
+    },[])
+    
 
     return (
         <div>
@@ -185,7 +210,7 @@ function VentaCertificados() {
                                     aria-labelledby="modal-modal-title"
                                     aria-describedby="modal-modal-description"
                                 >
-                                    <Box sx={style}>
+                                    <Box sx={windowWidth>=900?style:style900}>
                                         <HorizontalStepper
                                             stepsProps={[
                                                 "Paso 1",
@@ -196,11 +221,12 @@ function VentaCertificados() {
                                             componentsProps={[
                                                 <Grid container spacing={2}>
                                                     <Grid item xs={4}>
-                                                        <DatePicker
-                                                            title={"Fecha"}
+                                                        <TextField
+                                                            id="outlined-basic"
+                                                            label="Placa"
+                                                            variant="outlined"
                                                         />
                                                     </Grid>
-
                                                     <Grid item xs={4}>
                                                         <TextField
                                                             id="outlined-basic"
@@ -209,141 +235,95 @@ function VentaCertificados() {
                                                         />
                                                     </Grid>
                                                     <Grid item xs={4}>
-                                                        <TextField
-                                                            id="outlined-basic"
-                                                            label="Placa"
-                                                            variant="outlined"
+                                                        <DatePicker
+                                                            title={"Fecha Ticket"}
                                                         />
                                                     </Grid>
+
                                                 </Grid>,
                                                 <Grid container spacing={2}>
                                                     <Grid item xs={4}>
+                                                        <TextField
+                                                            id="outlined-basic"
+                                                            label="Placa Ticket"
+                                                            variant="outlined"
+                                                        />
+                                                    </Grid>
+                                                    <Grid item xs={4}>
                                                         <MenuSelector
                                                             textoTitulo={
-                                                                "Tipo de Certificado"
+                                                                "Modelo"
                                                             }
                                                             arregloValores={[
                                                                 {
-                                                                    nombre: "todos",
+                                                                    nombre: "2023",
                                                                     valor: 10,
                                                                 },
                                                                 {
-                                                                    nombre: "VERIFICACIÓN",
+                                                                    nombre: "2022",
                                                                     valor: 20,
                                                                 },
                                                             ]}
                                                         />
                                                     </Grid>
                                                     <Grid item xs={4}>
-                                                        <MenuSelector
-                                                            textoTitulo={
-                                                                "Usuario"
-                                                            }
-                                                            arregloValores={[
-                                                                {
-                                                                    nombre: "root",
-                                                                    valor: 10,
-                                                                },
-                                                            ]}
+                                                        <TextField
+                                                            id="outlined-basic"
+                                                            label="No. Técnico"
+                                                            variant="outlined"
+                                                        />
+                                                    </Grid>
+                                                    
+                                                    
+                                                </Grid>,
+                                                <Grid container spacing={2}>
+                                                    <Grid item xs={4}>
+                                                        <TextField
+                                                            id="outlined-basic"
+                                                            label="Nombre"
+                                                            variant="outlined"
                                                         />
                                                     </Grid>
                                                     <Grid item xs={4}>
                                                         <MenuSelector
                                                             textoTitulo={
-                                                                "Tipo de venta"
+                                                                "Linea"
                                                             }
                                                             arregloValores={[
                                                                 {
-                                                                    nombre: "Con importe",
+                                                                    nombre: "Linea 1",
                                                                     valor: 10,
                                                                 },
                                                                 {
-                                                                    nombre: "Cortesía",
+                                                                    nombre: "Linea 2",
                                                                     valor: 20,
                                                                 },
                                                                 {
-                                                                    nombre: "Intento",
+                                                                    nombre: "Linea 3",
                                                                     valor: 30,
                                                                 },
                                                                 {
-                                                                    nombre: "Reposición",
+                                                                    nombre: "Linea4",
                                                                     valor: 40,
                                                                 },
-                                                            ]}
-                                                        />
-                                                    </Grid>
-                                                </Grid>,
-                                                <Grid container spacing={2}>
-                                                    <Grid item xs={4}>
-                                                        <MenuSelector
-                                                            textoTitulo={
-                                                                "Tipo de pago"
-                                                            }
-                                                            arregloValores={[
-                                                                {
-                                                                    nombre: "Contado",
-                                                                    valor: 10,
-                                                                },
-                                                                {
-                                                                    nombre: "Credito",
-                                                                    valor: 20,
-                                                                },
-                                                                {
-                                                                    nombre: "Pago anticipado",
-                                                                    valor: 30,
-                                                                },
-                                                                {
-                                                                    nombre: "Tarjeta de Credito",
-                                                                    valor: 40,
-                                                                },
-                                                                {
-                                                                    nombre: "Tarjeta de Debito",
-                                                                    valor: 50,
-                                                                },
+                                                                
                                                             ]}
                                                         />
                                                     </Grid>
                                                     <Grid item xs={4}>
                                                         <TextField
                                                             id="outlined-basic"
-                                                            label="Monto"
+                                                            label="Certificado"
                                                             variant="outlined"
                                                         />
                                                     </Grid>
+                                                    
+                                                </Grid>,
+                                                <Grid container spacing={2}>
                                                     <Grid item xs={4}>
                                                         <TextField
                                                             id="outlined-basic"
-                                                            label="Copias"
-                                                            variant="outlined"
-                                                        />
-                                                    </Grid>
-                                                </Grid>,
-                                                <Grid container spacing={2}>
-                                                    <Grid item xs={3}>
-                                                        <TextField
-                                                            id="outlined-basic"
-                                                            label="Total"
-                                                            variant="outlined"
-                                                        />
-                                                    </Grid>
-                                                    <Grid item xs={3}>
-                                                        <TextField
-                                                            id="outlined-basic"
-                                                            label="Año de certificado"
-                                                            variant="outlined"
-                                                        />
-                                                    </Grid>
-                                                    <Grid item xs={3}>
-                                                        <TextField
-                                                            id="outlined-basic"
-                                                            label="Depositante"
-                                                            variant="outlined"
-                                                        />
-                                                    </Grid>
-                                                    <Grid item xs={3}>
-                                                        <TextField
-                                                            id="outlined-basic"
-                                                            label="Usuario"
+                                                            label="Tipo de Certificado"
                                                             variant="outlined"
                                                         />
                                                     </Grid>

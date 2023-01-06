@@ -1,7 +1,6 @@
 import * as React from "react";
 import { styled, createTheme, ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
-import MuiDrawer from "@mui/material/Drawer";
 import Box from "@mui/material/Box";
 import MuiAppBar from "@mui/material/AppBar";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -30,8 +29,6 @@ import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import Modal from "@mui/material/Modal";
-import Grid from "@mui/material/Grid";
-import TextField from "@mui/material/TextField";
 import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
@@ -40,6 +37,21 @@ import LibraryBooksIcon from "@mui/icons-material/LibraryBooks";
 import PointOfSaleIcon from "@mui/icons-material/PointOfSale";
 import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
+import CatalogosBeneficiarios from "./CatalogosBeneficiarios";
+import Reembolsos from "./Reembolsos";
+import RecibosDeSalida from "./RecibosDeSalida";
+import EstadosDeCuentasDeGastos from "./EstadosDeCuentasDeGastos";
+import ReportesDeGastos from "./ReporteDeGastos";
+import RecibosPorMotivo from "./RecibosPorMotivo";
+import DesgloseDeDinero from "./DesgloseDeDinero";
+import ReporteDeVentas from "./ReporteDeVentas";
+import ValesDePagosAnticipados from "./ValesDePagosAnticipados";
+import DevolucionDeDinero from "./DevolucionDeDinero";
+import PolizaCertificados from "./PolizaCertificados";
+import CatalogoDeClientes from "./CatalogoDeClientes";
+import FacturasGeneral from "./FacturasGeneral";
+import NotasDeCredito from "./NotasDeCredito";
+import CompraDeTimbres from "./CompraDeTimbres";
 
 const drawerWidth = 240;
 
@@ -53,10 +65,6 @@ const style = {
     bgcolor: "background.paper",
     boxShadow: 24,
     p: 4,
-};
-
-const unhideBox = {
-    display: true,
 };
 
 const AppBar = styled(MuiAppBar, {
@@ -75,32 +83,6 @@ const AppBar = styled(MuiAppBar, {
             duration: theme.transitions.duration.enteringScreen,
         }),
     }),
-}));
-
-const Drawer = styled(MuiDrawer, {
-    shouldForwardProp: (prop) => prop !== "open",
-})(({ theme, open }) => ({
-    "& .MuiDrawer-paper": {
-        position: "relative",
-        whiteSpace: "nowrap",
-        width: drawerWidth,
-        transition: theme.transitions.create("width", {
-            easing: theme.transitions.easing.sharp,
-            duration: theme.transitions.duration.enteringScreen,
-        }),
-        boxSizing: "border-box",
-        ...(!open && {
-            overflowX: "hidden",
-            transition: theme.transitions.create("width", {
-                easing: theme.transitions.easing.sharp,
-                duration: theme.transitions.duration.leavingScreen,
-            }),
-            width: theme.spacing(7),
-            [theme.breakpoints.up("sm")]: {
-                width: theme.spacing(9),
-            },
-        }),
-    },
 }));
 
 const mdTheme = createTheme();
@@ -250,6 +232,25 @@ function DashboardContent() {
                             />
 
                             <SelectionComponent
+                                titulo={"Gastos"}
+                                listaDeSeleccion={[
+                                    [
+                                        "Catalogos de beneficiarios",
+                                        "/CatalogosBeneficiarios",
+                                    ],
+                                    ["Reembolsos", "/Reembolsos"],
+                                    ["Recibos de Salida", "/RecibosDeSalida"],
+                                    [
+                                        "Estados de Cuentas de Gastos",
+                                        "/EstadoDeCuentaDeGastos",
+                                    ],
+                                    ["Reporte De Gastos", "/ReportesDeGastos"],
+                                    ["Recibos Por Motivo", "/RecibosPorMotivo"],
+                                ]}
+                                Icon={<AttachMoneyIcon sx={{ mr: 1 }} />}
+                            />
+
+                            <SelectionComponent
                                 titulo={"Ventas"}
                                 listaDeSeleccion={[
                                     [
@@ -265,8 +266,37 @@ function DashboardContent() {
                                         "Cancelar Certificados",
                                         "/CancelarCertificados",
                                     ],
+                                    ["Desglose de Dinero", "/DesgloseDeDinero"],
+                                    ["Reporte de Ventas", "/ReporteDeVentas"],
+                                    [
+                                        "Vales de pagos anticipados",
+                                        "/ValesDePagosAnticipados",
+                                    ],
+                                    [
+                                        "Devolución de dinero",
+                                        "/DevolucionDeDinero",
+                                    ],
+                                    [
+                                        "Poliza Certificados",
+                                        "/PolizaCertificados",
+                                    ],
                                 ]}
                                 Icon={<PointOfSaleIcon sx={{ mr: 1 }} />}
+                            />
+
+                           
+                            <SelectionComponent
+                                titulo={"Facturación"}
+                                listaDeSeleccion={[
+                                    [
+                                        "Catálogo de Clientes",
+                                        "/CatalogoDeClientes",
+                                    ],
+                                    ["Facturas General", "/FacturasGeneral"],
+                                    ["Notas De Crédito", "/NotasDeCredito"],
+                                    ["Compras de Timbres", "/CompraDeTimbres"],
+                                ]}
+                                Icon={<AttachMoneyIcon sx={{ mr: 1 }} />}
                             />
 
                             <SelectionComponent
@@ -281,20 +311,39 @@ function DashboardContent() {
                             />
 
                             <SelectionComponent
-                                titulo={"Administración"}
+                                titulo={"Personal"}
                                 listaDeSeleccion={[
                                     [
-                                        "Catálogo de Usuarios",
-                                        "/CatalogosUsuarios",
+                                        "Catálogo de Personal",
+                                        "/CatalogoDePersonal",
                                     ],
-                                    ["Catálogo de Plazas", "/CatalogoPlazas"],
+                                    ["Asistencia", "/Asistencia"],
                                     [
-                                        "Catálogo de Plantillas",
-                                        "/CatalogoPlantillas",
+                                        "Asistencia Por Periodo",
+                                        "/AsistenciaPorPeriodo",
                                     ],
-                                    ["Tipo de Plaza", "/TipoPlaza"],
-                                    ["Registro de Acceso", "/RegistroAcceso"],
-                                    ["Lectores de Huella", "/LectoresHuella"],
+                                ]}
+                                Icon={<AdminPanelSettingsIcon sx={{ mr: 1 }} />}
+                            />
+
+                            <SelectionComponent
+                                titulo={"Auditoria"}
+                                listaDeSeleccion={[
+                                    ["Informe de Ventas", "/InformeDeVentas"],
+                                    ["Informe de entregas", "/Asistencia"],
+                                    ["Resumen de Ingreso", "/ResumenDeIngreso"],
+                                    [
+                                        "Reporte de Importe Por Facturar",
+                                        "/ReporteDeImportePorFacturar",
+                                    ],
+                                    [
+                                        "Reporte de Copias por Facturar",
+                                        "/ReporteDeCopiasPorFacturar",
+                                    ],
+                                    [
+                                        "Reporte De Inventario",
+                                        "/ReporteDeInventario",
+                                    ],
                                 ]}
                                 Icon={<AdminPanelSettingsIcon sx={{ mr: 1 }} />}
                             />
@@ -307,18 +356,20 @@ function DashboardContent() {
                                 <MenuIcon />
                             </Button>
                         </div>
-                        {showSideBar && <div className="sideBarBackdground" onClick={() => setShowSideBar(!showSideBar)}></div>}
+                        {showSideBar && (
+                            <div
+                                className="sideBarBackdground"
+                                onClick={() => setShowSideBar(!showSideBar)}
+                            ></div>
+                        )}
 
                         {showSideBar && (
                             <div className="sideBar">
-                                <div
-                                    className="sideNavBar"
-                                >
+                                <div className="sideNavBar">
                                     {/* <LibraryBooksIcon /> */}
 
                                     <SelectionComponent
                                         titulo={"Catálogos locales"}
-                        
                                         listaDeSeleccion={[
                                             [
                                                 "Catálogo de Depositantes",
@@ -340,7 +391,6 @@ function DashboardContent() {
                                         Icon={
                                             <LibraryBooksIcon sx={{ mr: 1 }} />
                                         }
-                                        
                                     />
 
                                     <SelectionComponent
@@ -363,7 +413,45 @@ function DashboardContent() {
                                         Icon={
                                             <PointOfSaleIcon sx={{ mr: 1 }} />
                                         }
-                                        
+                                    />
+
+                                    <SelectionComponent
+                                        titulo={"Gastos"}
+                                        listaDeSeleccion={[
+                                            [
+                                                "Compras de Certificados",
+                                                "/CompraCertificados",
+                                            ],
+                                        ]}
+                                        Icon={
+                                            <AttachMoneyIcon sx={{ mr: 1 }} />
+                                        }
+                                    />
+
+                                    <SelectionComponent
+                                        titulo={"Ventas"}
+                                        listaDeSeleccion={[
+                                            [
+                                                "Venta de Certificados",
+                                                "/VentaCertificados",
+                                            ],
+                                            ["Pagos", "/Pagos"],
+                                            [
+                                                "Entrega de Certificados",
+                                                "/EntregaCertificados",
+                                            ],
+                                            [
+                                                "Cancelar Certificados",
+                                                "/CancelarCertificados",
+                                            ],
+                                            [
+                                                "Desglose de Dinero",
+                                                "/DesgloseDeDinero",
+                                            ],
+                                        ]}
+                                        Icon={
+                                            <PointOfSaleIcon sx={{ mr: 1 }} />
+                                        }
                                     />
 
                                     <SelectionComponent
@@ -377,11 +465,10 @@ function DashboardContent() {
                                         Icon={
                                             <AttachMoneyIcon sx={{ mr: 1 }} />
                                         }
-                                        
                                     />
 
                                     <SelectionComponent
-                                        titulo={"Administración"}
+                                        titulo={"Personal"}
                                         listaDeSeleccion={[
                                             [
                                                 "Catálogo de Usuarios",
@@ -410,7 +497,6 @@ function DashboardContent() {
                                                 sx={{ mr: 1 }}
                                             />
                                         }
-                                        
                                     />
                                 </div>
                             </div>
@@ -489,6 +575,131 @@ function DashboardContent() {
                             path="/LectoresHuella"
                             element={<LectoresHuella />}
                         />
+                        <Route
+                            path="/CatalogosBeneficiarios"
+                            element={<CatalogosBeneficiarios />}
+                        />
+                        <Route path="/Reembolsos" element={<Reembolsos />} />
+                        <Route
+                            path="/RecibosDeSalida"
+                            element={<RecibosDeSalida />}
+                        />
+                        <Route
+                            path="/EstadoDeCuentaDeGastos"
+                            element={<EstadosDeCuentasDeGastos />}
+                        />
+                        <Route
+                            path="/ReportesDeGastos"
+                            element={<ReportesDeGastos />}
+                        />
+                        <Route
+                            path="/RecibosPorMotivo"
+                            element={<RecibosPorMotivo />}
+                        />
+                        <Route
+                            path="/DesgloseDeDinero"
+                            element={<DesgloseDeDinero/>}
+                        />
+                        <Route
+                            path="/ReporteDeVentas"
+                            element={<ReporteDeVentas/>}
+                        />
+                        <Route
+                            path="/ValesDePagosAnticipados"
+                            element={<ValesDePagosAnticipados/>}
+                        />
+                        <Route
+                            path="/DevolucionDeDinero"
+                            element={<DevolucionDeDinero/>}
+                        />
+                        <Route
+                            path="/PolizaCertificados"
+                            element={<PolizaCertificados/>}
+                        />
+
+                        {/* Parte de Facturación */}
+
+                        <Route
+                            path="/CatalogoDeClientes"
+                            element={<CatalogoDeClientes/>}
+                        />
+
+                        <Route
+                            path="/FacturasGeneral"
+                            element={<FacturasGeneral/>}
+                        />
+
+                        <Route
+                            path="/NotasDeCredito"
+                            element={<NotasDeCredito/>}
+                        />
+
+                        <Route
+                            path="/CompraDeTimbres"
+                            element={<CompraDeTimbres/>}
+                        />
+
+                        {/* Parte de Compras */}
+
+                        {/* <Route
+                            path="/ComprasDeCertificados"
+                            element={<ComprasDeCertificados/>}
+                        /> */}
+
+                        {/* Parte de Personal */}
+
+                        {/* <Route
+                            path="/CatalogoDePersonal"
+                            element={<CatalogoDePersonal/>}
+                        /> */}
+
+                        {/* <Route
+                            path="/Asistencia"
+                            element={<Asistencia/>}
+                        /> */}
+
+                        {/* <Route
+                            path="/AsistenciaPorPeriodo"
+                            element={<AsistenciaPorPeriodo/>}
+                        /> */}
+
+                        {/* Parte de Auditoria */}
+
+                        {/* <Route
+                            path="/InformeDeVentas"
+                            element={<InformeDeVentas/>}
+                        /> */}
+
+                        {/* <Route
+                            path="/InformeDeVentas"
+                            element={<InformeDeVentas/>}
+                        /> */}
+
+                        {/* <Route
+                            path="/ResumenDeIngreso"
+                            element={<ResumenDeIngreso/>}
+                        /> */}
+
+                        {/* <Route
+                            path="/ReporteDeInformePorFacturar"
+                            element={<ReporteDeInformePorFacturar/>}
+                        /> */}
+
+                        {/* <Route
+                            path="/ReporteDeCopiasPorFacturar"
+                            element={<ReporteDeCopiasPorFacturar/>}
+                        /> */}
+
+                        {/* <Route
+                            path="/ReporteDeCopiasPorFacturar"
+                            element={<ReporteDeCopiasPorFacturar/>}
+                        /> */}
+
+                        {/* <Route
+                            path="/ReporteDeInventario"
+                            element={<ReporteDeInventario/>}
+                        /> */}
+
                     </Routes>
                 </Box>
             </Box>

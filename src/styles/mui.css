@@ -19,6 +19,8 @@
     margin-right: 10px;
 }
 
+
+
 @media (max-width: 900px) {
     .menusNavBar {
         display: none;
@@ -46,4 +48,8 @@
         opacity: 50%;
         position: absolute;
         transform: translateX(-5em);    }
+
+   
+
+
 }
