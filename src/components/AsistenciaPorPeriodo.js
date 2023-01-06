@@ -5,13 +5,12 @@ import Paper from "@mui/material/Paper";
 import Orders from "./CatalogoTabla";
 import Button from "@mui/material/Button";
 import DatePicker from "./subcomponents/DatePicker";
-import MenuSelector from "./subcomponents/MenuSelector";
-
 import { Typography } from "@mui/material";
 import TextField from "@mui/material/TextField";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 import HorizontalStepper from "./subcomponents/HorizontalStepper";
+import MenuSelector from "./subcomponents/MenuSelector";
 
 const rows = [];
 
@@ -41,9 +40,8 @@ const columns = [
     { field: "col12", headerName: "Usuario", width: 300 },
 ];
 
-function CatalogoDePersonal() {
+function AsistenciaPorPeriodo() {
     const [open, setOpen] = React.useState(false);
-    const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
     return (
         <div>
@@ -51,7 +49,7 @@ function CatalogoDePersonal() {
                 <Grid container spacing={3}>
                     <Grid item xs={12}>
                         <Typography color="#1976d2" variant="h4">
-                            Catálogo De Personal
+                            AsistenciaPorPeriodo
                         </Typography>
                     </Grid>
                     {/* Bloque de Nombre */}
@@ -66,36 +64,34 @@ function CatalogoDePersonal() {
                         >
                             <Grid container spacing={2}>
                                 <Grid item xs={6}>
+                                    <DatePicker title={"Fecha inicio"} />
+                                </Grid>
+                                <Grid item xs={6}>
+                                    <DatePicker title={"Fecha fin"} />
+                                </Grid>
+                                <Grid item xs={6}>
                                     <MenuSelector
                                         textoTitulo={"Plaza"}
                                         arregloValores={[
                                             {
-                                                nombre: "Credito",
+                                                nombre: "Todos",
                                                 valor: 10,
                                             },
                                             {
-                                                nombre: "Pago anticipado",
+                                                nombre: "VERIFICACIÓN",
                                                 valor: 20,
                                             },
                                         ]}
                                     />
                                 </Grid>
                                 <Grid item xs={6}>
-                                    <MenuSelector
-                                        textoTitulo={"Estatus"}
-                                        arregloValores={[
-                                            {
-                                                nombre: "Credito",
-                                                valor: 10,
-                                            },
-                                            {
-                                                nombre: "Pago anticipado",
-                                                valor: 20,
-                                            },
-                                        ]}
+                                    <TextField
+                                        id="outlined-basic"
+                                        label="No. Personal"
+                                        variant="outlined"
                                     />
                                 </Grid>
-                                <Grid item xs={4}>
+                                <Grid item xs={6}>
                                     <TextField
                                         id="outlined-basic"
                                         label="Nombre"
@@ -107,11 +103,11 @@ function CatalogoDePersonal() {
                                         textoTitulo={"Puesto"}
                                         arregloValores={[
                                             {
-                                                nombre: "Credito",
+                                                nombre: "Todos",
                                                 valor: 10,
                                             },
                                             {
-                                                nombre: "Pago anticipado",
+                                                nombre: "VERIFICACIÓN",
                                                 valor: 20,
                                             },
                                         ]}
@@ -127,15 +123,15 @@ function CatalogoDePersonal() {
                                 <Grid item xs={4} mr={3}>
                                     <Button variant="contained">Buscar</Button>
                                 </Grid>
-                                <Grid item xs={2}>
+                                {/*  <Grid item xs={2}>
                                     <Button
                                         variant="contained"
                                         color="success"
                                         onClick={handleOpen}
                                     >
-                                        Nuevo
+                                        Nueva Factura
                                     </Button>
-                                </Grid>
+                                </Grid> */}
                                 <Modal
                                     open={open}
                                     onClose={handleClose}
@@ -148,34 +144,33 @@ function CatalogoDePersonal() {
                                             componentsProps={[
                                                 <Grid container spacing={2}>
                                                     <Grid item xs={4}>
-                                                        <MenuSelector
-                                                            textoTitulo={
-                                                                "Plaza"
-                                                            }
-                                                            arregloValores={[
-                                                                {
-                                                                    nombre: "Credito",
-                                                                    valor: 10,
-                                                                },
-                                                                {
-                                                                    nombre: "Pago anticipado",
-                                                                    valor: 20,
-                                                                },
-                                                            ]}
-                                                        />
-                                                    </Grid>
-                                                    <Grid item xs={4}>
                                                         <DatePicker
-                                                            title={
-                                                                "Fecha ingreso"
-                                                            }
+                                                            title={"Fecha"}
                                                         />
                                                     </Grid>
                                                     <Grid item xs={4}>
                                                         <TextField
                                                             id="outlined-basic"
-                                                            label="Número"
+                                                            label="Folios"
                                                             variant="outlined"
+                                                        />
+                                                    </Grid>
+
+                                                    <Grid item xs={4}>
+                                                        <MenuSelector
+                                                            textoTitulo={
+                                                                "Tipo de Pago"
+                                                            }
+                                                            arregloValores={[
+                                                                {
+                                                                    nombre: "Todos",
+                                                                    valor: 10,
+                                                                },
+                                                                {
+                                                                    nombre: "VERIFICACIÓN",
+                                                                    valor: 20,
+                                                                },
+                                                            ]}
                                                         />
                                                     </Grid>
                                                 </Grid>,
@@ -183,32 +178,14 @@ function CatalogoDePersonal() {
                                                     <Grid item xs={4}>
                                                         <TextField
                                                             id="outlined-basic"
-                                                            label="Nombre"
+                                                            label="Folios"
                                                             variant="outlined"
                                                         />
                                                     </Grid>
                                                     <Grid item xs={4}>
-                                                        <MenuSelector
-                                                            textoTitulo={
-                                                                "Puesto"
-                                                            }
-                                                            arregloValores={[
-                                                                {
-                                                                    nombre: "Credito",
-                                                                    valor: 10,
-                                                                },
-                                                                {
-                                                                    nombre: "Pago anticipado",
-                                                                    valor: 20,
-                                                                },
-                                                            ]}
-                                                        />
-                                                    </Grid>
-                                                    
-                                                    <Grid item xs={4}>
                                                         <TextField
                                                             id="outlined-basic"
-                                                            label="RFC"
+                                                            label="Observaciones"
                                                             variant="outlined"
                                                         />
                                                     </Grid>
@@ -330,4 +307,4 @@ function CatalogoDePersonal() {
     );
 }
 
-export default CatalogoDePersonal;
+export default AsistenciaPorPeriodo;

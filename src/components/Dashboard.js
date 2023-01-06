@@ -52,6 +52,15 @@ import CatalogoDeClientes from "./CatalogoDeClientes";
 import FacturasGeneral from "./FacturasGeneral";
 import NotasDeCredito from "./NotasDeCredito";
 import CompraDeTimbres from "./CompraDeTimbres";
+import CatalogoDePersonal from "./CatalogoDePersonal";
+import Asistencia from "./Asistencia";
+import AsistenciaPorPeriodo from "./AsistenciaPorPeriodo";
+import InformeDeVentas from "./InformeDeVentas";
+import InformeDeEntregas from "./InformeDeEntregas";
+import ResumenDeIngreso from "./ResumenDeIngreso";
+import ReporteDeImportePorFacturar from "./ReporteDeImportePorFacturar";
+import ReporteDeCopiasPorFacturar from "./ReporteDeCopiasPorFacturar";
+import ReporteDeInventario from "./ReporteDeInventario";
 
 const drawerWidth = 240;
 
@@ -330,7 +339,7 @@ function DashboardContent() {
                                 titulo={"Auditoria"}
                                 listaDeSeleccion={[
                                     ["Informe de Ventas", "/InformeDeVentas"],
-                                    ["Informe de entregas", "/Asistencia"],
+                                    ["Informe de entregas", "/InformeDeEntregas"],
                                     ["Resumen de Ingreso", "/ResumenDeIngreso"],
                                     [
                                         "Reporte de Importe Por Facturar",
@@ -639,66 +648,60 @@ function DashboardContent() {
                             element={<CompraDeTimbres/>}
                         />
 
-                        {/* Parte de Compras */}
+                    
 
-                        {/* <Route
-                            path="/ComprasDeCertificados"
-                            element={<ComprasDeCertificados/>}
-                        /> */}
+                        
 
                         {/* Parte de Personal */}
 
-                        {/* <Route
+                        <Route
                             path="/CatalogoDePersonal"
                             element={<CatalogoDePersonal/>}
-                        /> */}
+                        />
 
-                        {/* <Route
+                        <Route
                             path="/Asistencia"
                             element={<Asistencia/>}
-                        /> */}
+                        />
 
-                        {/* <Route
+                        <Route
                             path="/AsistenciaPorPeriodo"
                             element={<AsistenciaPorPeriodo/>}
-                        /> */}
+                        />
 
                         {/* Parte de Auditoria */}
 
-                        {/* <Route
+                        <Route
                             path="/InformeDeVentas"
                             element={<InformeDeVentas/>}
-                        /> */}
+                        />
 
-                        {/* <Route
-                            path="/InformeDeVentas"
-                            element={<InformeDeVentas/>}
-                        /> */}
+                        <Route
+                            path="/InformeDeEntregas"
+                            element={<InformeDeEntregas/>}
+                        />
 
-                        {/* <Route
+                        <Route
                             path="/ResumenDeIngreso"
                             element={<ResumenDeIngreso/>}
-                        /> */}
+                        />
 
-                        {/* <Route
-                            path="/ReporteDeInformePorFacturar"
-                            element={<ReporteDeInformePorFacturar/>}
-                        /> */}
+                        <Route
+                            path="/ReporteDeImportePorFacturar"
+                            element={<ReporteDeImportePorFacturar/>}
+                        />
 
-                        {/* <Route
+                        <Route
                             path="/ReporteDeCopiasPorFacturar"
                             element={<ReporteDeCopiasPorFacturar/>}
-                        /> */}
+                        />
 
-                        {/* <Route
-                            path="/ReporteDeCopiasPorFacturar"
-                            element={<ReporteDeCopiasPorFacturar/>}
-                        /> */}
+                        
 
-                        {/* <Route
+                        <Route
                             path="/ReporteDeInventario"
                             element={<ReporteDeInventario/>}
-                        /> */}
+                        />
 
                     </Routes>
                 </Box>
